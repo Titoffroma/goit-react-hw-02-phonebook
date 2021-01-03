@@ -9,6 +9,7 @@ const Label = styled.label`
 }
 `
 const FormButton = styled(Button)`
+margin-top: 10px;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
  &:hover {
      color: #212121;
@@ -29,7 +30,8 @@ export default class Form extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
   };
   render() {
     return (
@@ -37,10 +39,23 @@ export default class Form extends Component {
         <Label><strong>Name</strong><br/>
           <Button as="input"
             type="text"
-            value={this.props.value}
+            required
+            id="name"
+            value={this.props.name}
             onChange={this.props.handleChange}
           />
         </Label>
+        <br/>
+        <Label><strong>Number</strong><br/>
+          <Button as="input"
+            type="tel"
+            required
+            id="number"
+            value={this.props.number}
+            onChange={this.props.handleChange}
+          />
+        </Label>
+        <br/>
         <FormButton>Add contact</FormButton>
       </form>
     );

@@ -4,7 +4,7 @@ const Contacts = styled.ul`
   list-style-type: none;
 `
 const ContactsListitem = styled.li.attrs((props) => ({
-    children: props.name,
+  children: [props.name, props.number].join(':  '),
 }))`
   font-weight: bold;
   font-size: 14px;
@@ -12,7 +12,7 @@ const ContactsListitem = styled.li.attrs((props) => ({
 
 const ContactsList = ({contactsList}) => (
     <Contacts>
-        {contactsList.map(li => (<ContactsListitem key={li.id} name={li.name}/>))}
+        {contactsList.map(li => (<ContactsListitem key={li.id} name={li.name} number={li.number}/>))}
     </Contacts>
 )
 

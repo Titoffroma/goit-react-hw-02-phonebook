@@ -9,20 +9,25 @@ export default class App extends Component {
   state = {
     contacts: [],
     name: "",
+    number: "",
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    if (!e.target.elements[0].value.length) return;
     this.setState({
       contacts: [
         ...this.state.contacts,
-        { name: e.target.elements[0].value, id: uuidv4() },
+        {
+          name: e.target.elements[0].value,
+          number: e.target.elements[1].value,
+          id: uuidv4(),
+        },
       ],
       name: "",
+      number: "",
     });
   };
   handleChange = (e) => {
-    this.setState({ name: e.target.value });
+    this.setState({ [e.target.getAttribute("id")]: e.target.value });
   };
   render() {
     return (
@@ -36,7 +41,8 @@ export default class App extends Component {
         <PhonebookCard>
           <Section title="Phonebook">
             <Form
-              value={this.state.name}
+              name={this.state.name}
+              number={this.state.number}
               handleSubmit={this.handleSubmit}
               handleChange={this.handleChange}
             />
