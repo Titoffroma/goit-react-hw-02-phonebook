@@ -14,6 +14,11 @@ export default class App extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
+    const duplicate = this.state.contacts.filter(
+      (contact) => contact.name === e.target.elements[0].value
+    );
+    if (duplicate.length)
+      return alert(`${duplicate[0].name} is already in contacts`);
     this.setState({
       contacts: [
         ...this.state.contacts,
