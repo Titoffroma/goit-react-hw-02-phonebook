@@ -34,12 +34,16 @@ export default class Form extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
   };
+  clearValue = (e) => {
+    this.setState({ name: "", number: "" });
+    this.props.handleSubmit(e);
+  }
   handleChange = (e) => {
     this.setState({ [e.target.getAttribute("id")]: e.target.value });
   };
   render() {
     return (
-      <form method="submit" onSubmit={this.props.handleSubmit}>
+      <form onSubmit={this.clearValue}>
         <Label><strong>Name</strong><br/>
           <Button as="input"
             type="text"

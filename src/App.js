@@ -23,9 +23,9 @@ export default class App extends Component {
           id: uuidv4(),
         },
       ],
-      name: "",
-      number: "",
     });
+    e.target.elements[0].value = "";
+    e.target.elements[1].value = "";
   };
   handleChange = (e) => {
     this.setState({ [e.target.getAttribute("id")]: e.target.value });
@@ -42,8 +42,6 @@ export default class App extends Component {
         <PhonebookCard>
           <Section title="Phonebook">
             <Form
-              name={this.state.name}
-              number={this.state.number}
               handleSubmit={this.handleSubmit}
               handleChange={this.handleChange}
             />
