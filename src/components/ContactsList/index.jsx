@@ -10,10 +10,15 @@ const ContactsListitem = styled.li.attrs((props) => ({
   font-size: 14px;
 `
 
-const ContactsList = ({contactsList}) => (
+const ContactsList = ({ contactsList, filter }) => {
+  console.log(filter)
+  let list = contactsList.filter( contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
+  if (!list.length) list = contactsList;
+  return (
     <Contacts>
-        {contactsList.map(li => (<ContactsListitem key={li.id} name={li.name} number={li.number}/>))}
+        {list.map(li => (<ContactsListitem key={li.id} name={li.name} number={li.number}/>))}
     </Contacts>
-)
+  )
+}
 
 export default ContactsList

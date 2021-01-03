@@ -3,11 +3,19 @@ import PhonebookCard from "./components/PhonebookCard";
 import Section from "./components/Section";
 import Form from "./components/Form";
 import ContactsList from "./components/ContactsList";
+import Button from "./components/Button";
+import Title from "./components/Title";
 import { v4 as uuidv4 } from "uuid";
 
 export default class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
+      { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
+      { id: "id-3", name: "Eden Clements", number: "645-17-79" },
+      { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+    ],
+    filter: "",
     name: "",
     number: "",
   };
@@ -48,7 +56,23 @@ export default class App extends Component {
             />
           </Section>
           <Section title="Contacts">
-            <ContactsList contactsList={this.state.contacts} />
+            <Title
+              as="h3"
+              title="Find contacts by name"
+              fontSize="16"
+              textAlign="left"
+            />
+            <Button
+              as="input"
+              type="text"
+              id="filter"
+              onChange={this.handleChange}
+              value={this.state.filter}
+            />
+            <ContactsList
+              contactsList={this.state.contacts}
+              filter={this.state.filter}
+            />
           </Section>
         </PhonebookCard>
       </>
