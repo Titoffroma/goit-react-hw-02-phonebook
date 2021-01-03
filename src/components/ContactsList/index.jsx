@@ -11,7 +11,6 @@ const ContactsListitem = styled.li.attrs((props) => ({
 `
 
 const ContactsList = ({ contactsList, filter }) => {
-  console.log(filter)
   let list = contactsList.filter( contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
   if (!list.length) list = contactsList;
   return (

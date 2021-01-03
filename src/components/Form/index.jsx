@@ -27,11 +27,15 @@ margin-top: 10px;
 `
 
 export default class Form extends Component {
+  state = {
+    name: "",
+    number: "",
+  };
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
-    handleChange: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
+  };
+  handleChange = (e) => {
+    this.setState({ [e.target.getAttribute("id")]: e.target.value });
   };
   render() {
     return (
@@ -41,8 +45,8 @@ export default class Form extends Component {
             type="text"
             required
             id="name"
-            value={this.props.name}
-            onChange={this.props.handleChange}
+            value={this.state.name}
+            onChange={this.handleChange}
           />
         </Label>
         <br/>
@@ -51,8 +55,8 @@ export default class Form extends Component {
             type="tel"
             required
             id="number"
-            value={this.props.number}
-            onChange={this.props.handleChange}
+            value={this.state.number}
+            onChange={this.handleChange}
           />
         </Label>
         <br/>
