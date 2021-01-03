@@ -35,6 +35,20 @@ export default class App extends Component {
   handleChange = (e) => {
     this.setState({ [e.target.getAttribute("id")]: e.target.value });
   };
+  handleClick = (e) => {
+    if (e.target.hasAttribute("data-id")) {
+      const contacts = this.state.contacts.slice();
+      const toDel = contacts.filter(
+        (contact) => contact.id === e.target.dataset.id
+      );
+      const index = contacts.indexOf(toDel[0]);
+      contacts.splice(index, 1);
+      this.setState({
+        contacts: contacts,
+        filter: "",
+      });
+    }
+  };
   render() {
     return (
       <>
@@ -44,7 +58,7 @@ export default class App extends Component {
           padding={20}
           tagName="h1"
         />
-        <PhonebookCard>
+        <PhonebookCard onClick={this.handleClick}>
           <Section title="Phonebook">
             <Form
               handleSubmit={this.handleSubmit}

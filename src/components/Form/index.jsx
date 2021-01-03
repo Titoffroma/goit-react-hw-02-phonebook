@@ -9,6 +9,7 @@ const Label = styled.label`
 }
 `
 const FormButton = styled(Button)`
+margin-left: 10px;
 margin-top: 10px;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
  &:hover {
@@ -25,7 +26,7 @@ margin-top: 10px;
      margin-right: 8px;
  }
 `
-
+export { FormButton };
 export default class Form extends Component {
   state = {
     name: "",
