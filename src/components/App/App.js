@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import PhonebookCard from "./components/PhonebookCard";
-import Section from "./components/Section";
-import Form from "./components/Form";
-import ContactsList from "./components/ContactsList";
-import Button from "./components/Button";
-import Title from "./components/Title";
+import PhonebookCard from "../PhonebookCard/PhonebookCardStyled";
+import Section from "../Section";
+import Form from "../Form";
+import ContactsList from "../ContactsList";
+import Button from "../Button/ButtonStyled";
+import Title from "../Title";
 import { v4 as uuidv4 } from "uuid";
 
 export default class App extends Component {
