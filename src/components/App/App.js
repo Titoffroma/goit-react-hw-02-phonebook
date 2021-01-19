@@ -23,31 +23,27 @@ export default class App extends Component {
       contacts: [
         ...this.state.contacts,
         {
-          name: e.target.elements[0].value,
-          number: e.target.elements[1].value,
+          name: e.currentTarget.elements[0].value,
+          number: e.currentTarget.elements[1].value,
           id: uuidv4(),
         },
       ],
     });
-    e.target.elements[0].value = "";
-    e.target.elements[1].value = "";
   };
   handleChange = (e) => {
     this.setState({ [e.target.getAttribute("id")]: e.target.value });
   };
   handleClick = (e) => {
-    if (e.target.hasAttribute("data-id")) {
-      const contacts = this.state.contacts.slice();
-      const toDel = contacts.filter(
-        (contact) => contact.id === e.target.dataset.id
-      );
-      const index = contacts.indexOf(toDel[0]);
-      contacts.splice(index, 1);
-      this.setState({
-        contacts: contacts,
-        filter: "",
-      });
-    }
+    const contacts = this.state.contacts.slice();
+    const toDel = contacts.filter(
+      (contact) => contact.id === e.target.dataset.id
+    );
+    const index = contacts.indexOf(toDel[0]);
+    contacts.splice(index, 1);
+    this.setState({
+      contacts: contacts,
+      filter: "",
+    });
   };
   render() {
     return (
@@ -58,12 +54,9 @@ export default class App extends Component {
           padding={20}
           tagName="h1"
         />
-        <PhonebookCard onClick={this.handleClick}>
+        <PhonebookCard>
           <Section title="Phonebook">
-            <Form
-              handleSubmit={this.handleSubmit}
-              handleChange={this.handleChange}
-            />
+            <Form handleSubmit={this.handleSubmit} />
           </Section>
           <Section title="Contacts">
             <Title
@@ -82,6 +75,7 @@ export default class App extends Component {
             <ContactsList
               contactsList={this.state.contacts}
               filter={this.state.filter}
+              handleClick={this.handleClick}
             />
           </Section>
         </PhonebookCard>
