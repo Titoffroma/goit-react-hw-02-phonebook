@@ -19,21 +19,19 @@ export default class App extends Component {
     );
     if (duplicate.length)
       return alert(`${duplicate[0].name} is already in contacts`);
-    this.setState({
-      contacts: [
-        ...this.state.contacts,
-        {
-          name: e.currentTarget.elements[0].value,
-          number: e.currentTarget.elements[1].value,
-          id: uuidv4(),
-        },
-      ],
+    const name = e.target.elements[0].value;
+    const number = e.target.elements[1].value;
+    const id = uuidv4();
+    this.setState((prevState) => {
+      return {
+        contacts: [...prevState.contacts, { name, number, id }],
+      };
     });
   };
-  handleChange = (e) => {
-    this.setState({ [e.target.getAttribute("id")]: e.target.value });
+  handleChangeFilter = (e) => {
+    this.setState({ filter: e.target.value });
   };
-  handleClick = (e) => {
+  handleRemoveContact = (e) => {
     const contacts = this.state.contacts.slice();
     const toDel = contacts.filter(
       (contact) => contact.id === e.target.dataset.id
@@ -41,7 +39,7 @@ export default class App extends Component {
     const index = contacts.indexOf(toDel[0]);
     contacts.splice(index, 1);
     this.setState({
-      contacts: contacts,
+      contacts,
       filter: "",
     });
   };
@@ -69,13 +67,13 @@ export default class App extends Component {
               as="input"
               type="text"
               id="filter"
-              onChange={this.handleChange}
+              onChange={this.handleChangeFilter}
               value={this.state.filter}
             />
             <ContactsList
               contactsList={this.state.contacts}
               filter={this.state.filter}
-              handleClick={this.handleClick}
+              handleRemoveContact={this.handleRemoveContact}
             />
           </Section>
         </PhonebookCard>

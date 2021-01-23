@@ -1,7 +1,7 @@
 import { FormButton } from "../Form/FormStyled";
 import { Contacts, ContactsListitem } from "./ContactsListStyled";
 
-const ContactsList = ({ contactsList, filter, handleClick }) => {
+const ContactsList = ({ contactsList, filter, handleRemoveContact }) => {
   let list = contactsList.filter((contact) =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
@@ -11,7 +11,7 @@ const ContactsList = ({ contactsList, filter, handleClick }) => {
       {list.map((li) => (
         <ContactsListitem key={li.id} name={li.name} number={li.number}>
           <span>{[li.name, li.number].join(", ")}</span>
-          <FormButton data-id={li.id} onClick={handleClick}>
+          <FormButton data-id={li.id} onClick={handleRemoveContact}>
             Delete
           </FormButton>
         </ContactsListitem>
