@@ -35,15 +35,13 @@ export default class App extends Component {
   };
 
   handleRemoveContact = (e) => {
-    const contacts = this.state.contacts.slice();
-    const toDel = contacts.filter(
-      (contact) => contact.id === e.target.dataset.id
-    );
-    const index = contacts.indexOf(toDel[0]);
-    contacts.splice(index, 1);
-    this.setState({
-      contacts,
-      filter: "",
+    this.setState(({ contacts }) => {
+      return {
+        contacts: contacts.filter(
+          (contact) => contact.id !== e.target.dataset.id
+        ),
+        filter: "",
+      };
     });
   };
 
