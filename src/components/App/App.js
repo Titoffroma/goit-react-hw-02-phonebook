@@ -12,6 +12,7 @@ export default class App extends Component {
     contacts: [],
     filter: "",
   };
+
   handleSubmit = (e) => {
     e.preventDefault();
     const duplicate = this.state.contacts.filter(
@@ -28,9 +29,11 @@ export default class App extends Component {
       };
     });
   };
+
   handleChangeFilter = (e) => {
     this.setState({ filter: e.target.value });
   };
+
   handleRemoveContact = (e) => {
     const contacts = this.state.contacts.slice();
     const toDel = contacts.filter(
@@ -43,6 +46,7 @@ export default class App extends Component {
       filter: "",
     });
   };
+
   render() {
     return (
       <>

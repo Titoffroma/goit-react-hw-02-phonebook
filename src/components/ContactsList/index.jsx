@@ -5,7 +5,9 @@ const ContactsList = ({ contactsList, filter, handleRemoveContact }) => {
   let list = contactsList.filter((contact) =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
+
   if (!list.length) list = contactsList;
+
   return (
     <Contacts>
       {list.map((li) => (
